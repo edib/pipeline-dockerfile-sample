@@ -9,7 +9,7 @@ pipeline {
         sh 'echo myCustomEnvVar = $myCustomEnvVar'
       }
     }
-    stage('Push') {
+    stages('Push') {
        docker.withRegistry('http://172.18.0.4:5000') {
 
         docker.image('my-ubuntu').inside {
