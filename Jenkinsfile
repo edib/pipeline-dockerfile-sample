@@ -9,16 +9,13 @@ pipeline {
         sh 'echo myCustomEnvVar = $myCustomEnvVar'
       }
     }
-  }
-}
-
-node {
-    checkout scm
-
-    docker.withRegistry('http://172.18.0.4:5000') {
+    stage('Push') {
+       docker.withRegistry('http://172.18.0.4:5000') {
 
         docker.image('my-ubuntu').inside {
             sh 'env'
         }
     }
+    }
+  }
 }
